@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SECRET BASE CAFE in the Forest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Bangers&family=Noto+Sans+JP:wght@300;400;500;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========== カスタムカーソル ========== -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ========== 蛍パーティクルコンテナ ========== -->
+  <div class="firefly-container" id="fireflyContainer"></div>
+
+  <!-- ========== NAV ========== -->
+  <nav id="mainNav">
+    <div class="nav-logo">
+      <span class="logo-icon">🧭</span>
+      <span class="logo-text">SECRET BASE</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#concept"><span class="nav-icon">🗺️</span> Concept</a></li>
+      <li><a href="#menu"><span class="nav-icon">🍽️</span> Menu</a></li>
+      <li><a href="#access"><span class="nav-icon">📍</span> Access</a></li>
+    </ul>
+    <div class="nav-stamp">TOP SECRET</div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <!-- 背景レイヤー -->
+    <div class="hero-bg"></div>
+    <div class="hero-grid-overlay"></div>
+
+    <!-- ツリーハウスSVG -->
+    <div class="treehouse-container">
+      <svg class="treehouse-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+        <!-- 背景の森 -->
+        <g class="bg-trees" opacity="0.4">
+          <polygon points="0,600 70,350 140,600" fill="#0d2b0a"/>
+          <polygon points="30,600 90,300 150,600" fill="#102e0d"/>
+          <polygon points="650,600 720,330 790,600" fill="#0d2b0a"/>
+          <polygon points="680,600 740,280 800,600" fill="#102e0d"/>
+          <polygon points="350,600 420,250 490,600" fill="#0a2508"/>
+          <polygon points="500,600 565,310 630,600" fill="#0d2b0a"/>
+        </g>
+
+        <!-- 太い幹（メインツリー） -->
+        <rect x="355" y="280" width="90" height="320" rx="8" fill="#4a2e12"/>
+        <rect x="365" y="280" width="25" height="320" rx="4" fill="#5a3a18" opacity="0.5"/>
+        <!-- 幹の模様 -->
+        <ellipse cx="375" cy="350" rx="8" ry="12" fill="#3a2208" opacity="0.6"/>
+        <ellipse cx="410" cy="420" rx="6" ry="10" fill="#3a2208" opacity="0.5"/>
+        <path d="M355 320 Q340 310 325 320" stroke="#3a2208" stroke-width="3" fill="none" opacity="0.5"/>
+        <path d="M445 380 Q460 370 475 380" stroke="#3a2208" stroke-width="3" fill="none" opacity="0.5"/>
+
+        <!-- 枝 -->
+        <line x1="400" y1="300" x2="260" y2="200" stroke="#4a2e12" stroke-width="18" stroke-linecap="round"/>
+        <line x1="400" y1="300" x2="540" y2="190" stroke="#4a2e12" stroke-width="16" stroke-linecap="round"/>
+        <line x1="400" y1="340" x2="200" y2="280" stroke="#4a2e12" stroke-width="12" stroke-linecap="round"/>
+        <line x1="400" y1="340" x2="600" y2="260" stroke="#4a2e12" stroke-width="11" stroke-linecap="round"/>
+
+        <!-- 葉っぱの塊（後ろ） -->
+        <g opacity="0.85">
+          <circle cx="280" cy="170" r="80" fill="#1a4314"/>
+          <circle cx="240" cy="140" r="60" fill="#1e5018"/>
+          <circle cx="320" cy="130" r="70" fill="#224d16"/>
+          <circle cx="280" cy="100" r="55" fill="#1a4314"/>
+        </g>
+        <g opacity="0.85">
+          <circle cx="530" cy="155" r="75" fill="#1a4314"/>
+          <circle cx="570" cy="125" r="58" fill="#1e5018"/>
+          <circle cx="490" cy="120" r="65" fill="#224d16"/>
+          <circle cx="535" cy="90" r="50" fill="#1a4314"/>
+        </g>
+        <g opacity="0.9">
+          <circle cx="205" cy="255" r="60" fill="#1a4314"/>
+          <circle cx="170" cy="235" r="45" fill="#224d16"/>
+          <circle cx="235" cy="225" r="52" fill="#1e5018"/>
+        </g>
+        <g opacity="0.9">
+          <circle cx="595" cy="240" r="58" fill="#1a4314"/>
+          <circle cx="630" cy="220" r="44" fill="#224d16"/>
+          <circle cx="565" cy="215" r="50" fill="#1e5018"/>
+        </g>
+
+        <!-- ツリーハウス本体 -->
+        <!-- プラットフォーム -->
+        <rect x="270" y="255" width="260" height="18" rx="4" fill="#6b4423"/>
+        <rect x="265" y="258" width="270" height="10" rx="3" fill="#7a5030"/>
+        <!-- 床板の線 -->
+        <line x1="290" y1="258" x2="290" y2="268" stroke="#5a3820" stroke-width="2"/>
+        <line x1="315" y1="258" x2="315" y2="268" stroke="#5a3820" stroke-width="2"/>
+        <line x1="340" y1="258" x2="340" y2="268" stroke="#5a3820" stroke-width="2"/>
+        <line x1="365" y1="258" x2="365" y2="268" stroke="#5a3820" stroke-width="2"/>
+        <line x1="390" y1="258" x2="390" y2="268" stroke="#5a3820" stroke-width="2"/>
+        <line x1="415" y1="258" x2="415" y2="268" stroke="#5a3820" stroke-width="2"/>
+        <line x1="440" y1="258" x2="440" y2="268" stroke="#5a3820" stroke-width="2"/>
+        <line x1="465" y1="258" x2="465" y2="268" stroke="#5a3820" stroke-width="2"/>
+        <line x1="490" y1="258" x2="490" y2="268" stroke="#5a3820" stroke-width="2"/>
+        <line x1="515" y1="258" x2="515" y2="268" stroke="#5a3820" stroke-width="2"/>
+
+        <!-- 家の壁 -->
+        <rect x="285" y="185" width="230" height="75" rx="3" fill="#8B6340"/>
+        <!-- 壁の木目 -->
+        <line x1="285" y1="200" x2="515" y2="200" stroke="#7a5530" stroke-width="1.5" opacity="0.6"/>
+        <line x1="285" y1="215" x2="515" y2="215" stroke="#7a5530" stroke-width="1.5" opacity="0.6"/>
+        <line x1="285" y1="230" x2="515" y2="230" stroke="#7a5530" stroke-width="1.5" opacity="0.6"/>
+        <line x1="285" y1="245" x2="515" y2="245" stroke="#7a5530" stroke-width="1.5" opacity="0.6"/>
+        <!-- 縦板 -->
+        <line x1="340" y1="185" x2="340" y2="260" stroke="#9a7050" stroke-width="2" opacity="0.4"/>
+        <line x1="400" y1="185" x2="400" y2="260" stroke="#9a7050" stroke-width="2" opacity="0.4"/>
+        <line x1="460" y1="185" x2="460" y2="260" stroke="#9a7050" stroke-width="2" opacity="0.4"/>
+
+        <!-- 屋根 -->
+        <polygon points="270,188 400,120 530,188" fill="#5a3215"/>
+        <polygon points="275,188 400,124 525,188" fill="#6b3e1e"/>
+        <!-- 屋根の線 -->
+        <line x1="340" y1="155" x2="400" y2="124" stroke="#7a4a28" stroke-width="2" opacity="0.5"/>
+        <line x1="460" y1="155" x2="400" y2="124" stroke="#7a4a28" stroke-width="2" opacity="0.5"/>
+        <!-- 煙突 -->
+        <rect x="440" y="118" width="22" height="40" rx="3" fill="#4a2a10"/>
+        <rect x="436" y="114" width="30" height="8" rx="2" fill="#3a2008"/>
+        <!-- 煙 -->
+        <path class="smoke" d="M451 110 Q445 95 451 82 Q457 69 451 56" stroke="#d9cdb8" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.6"/>
+        <path class="smoke smoke-2" d="M458 108 Q464 93 458 80 Q452 67 458 54" stroke="#d9cdb8" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.4"/>
+
+        <!-- 窓（左） -->
+        <rect x="300" y="200" width="50" height="45" rx="3" fill="#1a3a28"/>
+        <rect x="304" y="204" width="42" height="37" rx="2" fill="#1e4a30"/>
+        <!-- 窓の光 -->
+        <rect x="304" y="204" width="42" height="37" rx="2" fill="#FFC107" opacity="0.2"/>
+        <line x1="325" y1="204" x2="325" y2="241" stroke="#5a3820" stroke-width="2"/>
+        <line x1="304" y1="222" x2="346" y2="222" stroke="#5a3820" stroke-width="2"/>
+        <!-- 窓の光のきらめき -->
+        <circle cx="312" cy="212" r="3" fill="#FFC107" opacity="0.5" class="window-glow"/>
+
+        <!-- 窓（右） -->
+        <rect x="450" y="200" width="50" height="45" rx="3" fill="#1a3a28"/>
+        <rect x="454" y="204" width="42" height="37" rx="2" fill="#1e4a30"/>
+        <rect x="454" y="204" width="42" height="37" rx="2" fill="#FFC107" opacity="0.2"/>
+        <line x1="475" y1="204" x2="475" y2="241" stroke="#5a3820" stroke-width="2"/>
+        <line x1="454" y1="222" x2="496" y2="222" stroke="#5a3820" stroke-width="2"/>
+        <circle cx="462" cy="212" r="3" fill="#FFC107" opacity="0.5" class="window-glow"/>
+
+        <!-- ドア -->
+        <rect x="375" y="215" width="50" height="50" rx="3" fill="#3a2008"/>
+        <rect x="379" y="218" width="42" height="47" rx="2" fill="#4a2e10"/>
+        <!-- ドアのアーチ -->
+        <path d="M379 230 Q400 215 421 230" fill="#3a2008"/>
+        <!-- ドアノブ -->
+        <circle cx="416" cy="243" r="4" fill="#FFC107"/>
+        <!-- 「KEEP OUT」サイン -->
+        <rect x="378" y="233" width="44" height="14" rx="2" fill="#FF9800" opacity="0.9"/>
+        <text x="400" y="243" text-anchor="middle" font-family="Arial Black" font-size="6.5" fill="white" font-weight="bold">KEEP OUT!</text>
+
+        <!-- ハシゴ -->
+        <line x1="370" y1="265" x2="355" y2="430" stroke="#6b4423" stroke-width="8" stroke-linecap="round"/>
+        <line x1="420" y1="265" x2="435" y2="430" stroke="#6b4423" stroke-width="8" stroke-linecap="round"/>
+        <!-- ハシゴの横棒 -->
+        <line x1="358" y1="290" x2="432" y2="290" stroke="#7a5030" stroke-width="6" stroke-linecap="round"/>
+        <line x1="361" y1="315" x2="433" y2="315" stroke="#7a5030" stroke-width="6" stroke-linecap="round"/>
+        <line x1="364" y1="340" x2="434" y2="340" stroke="#7a5030" stroke-width="6" stroke-linecap="round"/>
+        <line x1="367" y1="365" x2="435" y2="365" stroke="#7a5030" stroke-width="6" stroke-linecap="round"/>
+        <line x1="369" y1="390" x2="436" y2="390" stroke="#7a5030" stroke-width="6" stroke-linecap="round"/>
+        <line x1="371" y1="415" x2="437" y2="415" stroke="#7a5030" stroke-width="6" stroke-linecap="round"/>
+
+        <!-- ロープ & 旗 -->
+        <path d="M290 188 Q250 170 220 175" stroke="#8B6340" stroke-width="2" fill="none" stroke-dasharray="4,3"/>
+        <path d="M510 188 Q550 172 580 178" stroke="#8B6340" stroke-width="2" fill="none" stroke-dasharray="4,3"/>
+        <!-- フラッグ（左） -->
+        <polygon points="220,175 220,155 240,165" fill="#FF9800" class="flag-wave"/>
+        <!-- フラッグ（右） -->
+        <polygon points="580,178 580,158 560,168" fill="#FF9800" class="flag-wave"/>
+
+        <!-- 電球ガーランド -->
+        <path d="M285 185 Q320 175 355 182 Q390 175 400 178 Q430 172 465 180 Q490 172 515 185" stroke="#8B6340" stroke-width="1.5" fill="none"/>
+        <circle cx="310" cy="178" r="4" fill="#FFC107" class="bulb-glow"/>
+        <circle cx="340" cy="174" r="4" fill="#FF9800" class="bulb-glow" style="animation-delay:0.3s"/>
+        <circle cx="370" cy="177" r="4" fill="#FFC107" class="bulb-glow" style="animation-delay:0.6s"/>
+        <circle cx="400" cy="177" r="4" fill="#FF9800" class="bulb-glow" style="animation-delay:0.9s"/>
+        <circle cx="430" cy="174" r="4" fill="#FFC107" class="bulb-glow" style="animation-delay:1.2s"/>
+        <circle cx="460" cy="177" r="4" fill="#FF9800" class="bulb-glow" style="animation-delay:1.5s"/>
+        <circle cx="490" cy="176" r="4" fill="#FFC107" class="bulb-glow" style="animation-delay:1.8s"/>
+
+        <!-- 前景の草・地面 -->
+        <rect x="0" y="560" width="800" height="40" fill="#1a4314" rx="0"/>
+        <g fill="#224d16">
+          <polygon points="0,560 15,530 30,560"/>
+          <polygon points="40,560 58,525 76,560"/>
+          <polygon points="100,560 118,535 136,560"/>
+          <polygon points="200,560 215,528 230,560"/>
+          <polygon points="600,560 618,530 636,560"/>
+          <polygon points="700,560 715,532 730,560"/>
+          <polygon points="760,560 778,528 796,560"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- ヒーローコンテンツ -->
+    <div class="hero-content">
+      <p class="hero-eyebrow">🔐 Top Secret — Members Only</p>
+
+      <h1 class="hero-title">
+        <span class="char-animate" id="heroTitle"></span>
+      </h1>
+
+      <p class="hero-subtitle">in the <em>Forest</em></p>
+
+      <p class="hero-tagline">
+        森の奥深くに隠された、あなただけの秘密基地。<br>
+        探検の合間に、特別な一杯を。
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#concept" class="btn btn-primary bounce-hover">
+          🗺️ 秘密基地を探索する
+        </a>
+        <a href="#menu" class="btn btn-secondary bounce-hover">
+          ☕ 秘密のメニューを見る
+        </a>
+      </div>
+
+      <!-- 探検バッジ -->
+      <div class="explorer-badge">
+        <div class="badge-inner">
+          <span class="badge-icon">🧭</span>
+          <span class="badge-text">EXPLORER<br>ZONE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- スクロールインジケーター -->
+    <div class="hero-scroll">
+      <span>↓ Scroll to Explore</span>
+      <div class="scroll-rope"></div>
+    </div>
+  </section>
+
+  <!-- ========== CONCEPT ========== -->
+  <section class="concept" id="concept">
+    <!-- 地図テクスチャ背景 -->
+    <div class="map-texture-bg"></div>
+
+    <div class="section-inner">
+      <!-- セクションヘッダー -->
+      <div class="section-header fade-up">
+        <div class="stamp-label">📜 Our Story</div>
+        <h2 class="section-title">秘密基地への<br><em>地図</em></h2>
+      </div>
+
+      <div class="concept-grid">
+        <!-- ビジュアル -->
+        <div class="concept-visual fade-up" data-delay="0">
+          <div class="concept-frame">
+            <!-- 古びた地図風SVG -->
+            <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg" class="concept-map-svg">
+              <!-- 羊皮紙背景 -->
+              <defs>
+                <filter id="paper">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise"/>
+                  <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+                  <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="blend"/>
+                  <feComponentTransfer in="blend">
+                    <feFuncR type="linear" slope="1.1" intercept="0.05"/>
+                    <feFuncG type="linear" slope="1.0" intercept="0.02"/>
+                    <feFuncB type="linear" slope="0.8" intercept="0"/>
+                  </feComponentTransfer>
+                </filter>
+                <filter id="torn">
+                  <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="3" seed="2" result="noise"/>
+                  <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+                </filter>
+              </defs>
+              <!-- 背景 -->
+              <rect width="400" height="480" fill="#d4b896" filter="url(#paper)"/>
+              <!-- 内側の枠 -->
+              <rect x="15" y="15" width="370" height="450" fill="none" stroke="#795548" stroke-width="2" stroke-dasharray="6,3" opacity="0.6"/>
+              <!-- 森のエリア -->
+              <g fill="#5a7a3a" opacity="0.3">
+                <circle cx="80" cy="100" r="35"/>
+                <circle cx="110" cy="80" r="28"/>
+                <circle cx="55" cy="75" r="25"/>
+                <circle cx="300" cy="120" r="32"/>
+                <circle cx="330" cy="100" r="26"/>
+                <circle cx="270" cy="95" r="22"/>
+                <circle cx="180" cy="380" r="40"/>
+                <circle cx="210" cy="360" r="32"/>
+                <circle cx="150" cy="365" r="28"/>
+              </g>
+              <!-- 山 -->
+              <polygon points="150,160 200,80 250,160" fill="#8B6340" opacity="0.3"/>
+              <polygon points="60,200 110,130 160,200" fill="#7a5530" opacity="0.25"/>
+              <!-- 川 -->
+              <path d="M0 250 Q80 240 160 260 Q240 280 320 265 Q380 255 400 260" stroke="#4a90d9" stroke-width="4" fill="none" opacity="0.35" stroke-linecap="round"/>
+              <!-- 道 -->
+              <path d="M200 480 Q195 400 205 320 Q210 240 200 160 Q195 80 200 0" stroke="#795548" stroke-width="3" fill="none" stroke-dasharray="8,5" opacity="0.5"/>
+              <path d="M0 240 Q100 235 200 245 Q300 255 400 245" stroke="#795548" stroke-width="2.5" fill="none" stroke-dasharray="6,4" opacity="0.4"/>
+
+              <!-- ツリーハウスマーカー -->
+              <g transform="translate(195,200)">
+                <circle r="18" fill="#FF9800" opacity="0.9"/>
+                <text y="5" text-anchor="middle" font-size="16">🏠</text>
+              </g>
+              <!-- マーカーの波紋 -->
+              <circle cx="195" cy="200" r="25" fill="none" stroke="#FF9800" stroke-width="2" opacity="0.5" class="ping"/>
+              <circle cx="195" cy="200" r="35" fill="none" stroke="#FF9800" stroke-width="1" opacity="0.3" class="ping" style="animation-delay:0.5s"/>
+
+              <!-- コンパスローズ -->
+              <g transform="translate(330,380)">
+                <circle r="30" fill="#d4b896" stroke="#795548" stroke-width="1.5" opacity="0.8"/>
+                <polygon points="0,-22 4,-8 0,-12 -4,-8" fill="#c0392b"/>
+                <polygon points="0,22 4,8 0,12 -4,8" fill="#795548"/>
+                <polygon points="-22,0 -8,4 -12,0 -8,-4" fill="#795548"/>
+                <polygon points="22,0 8,4 12,0 8,-4" fill="#795548"/>
+                <circle r="4" fill="#795548"/>
+                <text y="-26" text-anchor="middle" font-size="9" fill="#795548" font-family="Arial" font-weight="bold">N</text>
+                <text y="34" text-anchor="middle" font-size="8" fill="#795548" font-family="Arial">S</text>
+                <text x="-28" y="4" text-anchor="middle" font-size="8" fill="#795548" font-family="Arial">W</text>
+                <text x="28" y="4" text-anchor="middle" font-size="8" fill="#795548" font-family="Arial">E</text>
+              </g>
+
+              <!-- 宝の印 -->
+              <g transform="translate(195,200)">
+                <text x="0" y="-28" text-anchor="middle" font-family="'Permanent Marker',cursive" font-size="10" fill="#c0392b" transform="rotate(-15)">SECRET BASE</text>
+              </g>
+
+              <!-- 距離スケール -->
+              <g transform="translate(30,440)">
+                <line x1="0" y1="0" x2="80" y2="0" stroke="#795548" stroke-width="2"/>
+                <line x1="0" y1="-5" x2="0" y2="5" stroke="#795548" stroke-width="2"/>
+                <line x1="80" y1="-5" x2="80" y2="5" stroke="#795548" stroke-width="2"/>
+                <line x1="40" y1="-3" x2="40" y2="3" stroke="#795548" stroke-width="1.5"/>
+                <text x="40" y="-9" text-anchor="middle" font-size="8" fill="#795548" font-family="Arial">500m</text>
+              </g>
+
+              <!-- タイトル装飾 -->
+              <text x="200" y="45" text-anchor="middle" font-family="'Permanent Marker',cursive" font-size="18" fill="#795548" opacity="0.7">Secret Map</text>
+              <text x="200" y="62" text-anchor="middle" font-family="Arial" font-size="9" fill="#795548" opacity="0.5" letter-spacing="3">— CLASSIFIED —</text>
+
+              <!-- 破れた端 -->
+              <path d="M0,0 L15,5 L0,12 L18,18 L0,24 L12,30 L0,36 L14,42 L0,48" stroke="#b89060" stroke-width="1" fill="#c4a070" opacity="0.3"/>
+
+              <!-- スタンプ -->
+              <g transform="translate(80,350) rotate(-15)">
+                <rect x="-35" y="-18" width="70" height="36" rx="4" fill="none" stroke="#c0392b" stroke-width="2.5" opacity="0.5"/>
+                <text x="0" y="-4" text-anchor="middle" font-size="9" fill="#c0392b" font-family="Arial Black" font-weight="bold" opacity="0.5">TOP</text>
+                <text x="0" y="10" text-anchor="middle" font-size="9" fill="#c0392b" font-family="Arial Black" font-weight="bold" opacity="0.5">SECRET</text>
+              </g>
+            </svg>
+          </div>
+          <!-- 装飾ピン -->
+          <div class="map-pin" style="top:-10px;right:-10px;">📌</div>
+          <div class="map-pin" style="bottom:10px;left:-5px;transform:rotate(20deg);">📌</div>
+        </div>
+
+        <!-- テキスト -->
+        <div class="concept-text-col fade-up" data-delay="150">
+          <div class="handwritten-label">// 秘密のコンセプト //</div>
+
+          <h3 class="concept-heading">
+            古びた地図を頼りに<br>
+            入った森の先に—
+          </h3>
+
+          <p class="concept-body">
+            ツリーハウスに作られた秘密のカフェ。子供の頃に夢見た「自分だけの場所」が、ここにあります。
+          </p>
+          <p class="concept-body">
+            苔むした石段を上り、軋むハシゴを登れば、そこには特別な空間が広がっています。自家焙煎の珈琲の香り、手作りのスイーツ、そして仲間との笑い声。
+          </p>
+          <p class="concept-body">
+            大人になっても、探検する心を忘れないで。あなたの秘密基地が、ここで待っています。
+          </p>
+
+          <!-- アドベンチャーカード -->
+          <div class="adventure-cards">
+            <div class="adv-card bounce-hover">
+              <span class="adv-icon">🌲</span>
+              <span class="adv-text">森の中<br>の隠れ家</span>
+            </div>
+            <div class="adv-card bounce-hover">
+              <span class="adv-icon">🔑</span>
+              <span class="adv-text">秘密の<br>メンバー制</span>
+            </div>
+            <div class="adv-card bounce-hover">
+              <span class="adv-icon">☕</span>
+              <span class="adv-text">自家焙煎<br>スペシャルティ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MENU ========== -->
+  <section class="menu" id="menu">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <div class="stamp-label">🍽️ Classified Menu</div>
+        <h2 class="section-title menu-title">秘密基地の<br><em>スペシャルメニュー</em></h2>
+        <p class="section-subtitle">探検家だけが味わえる、特別な一品</p>
+      </div>
+
+      <div class="menu-cards">
+
+        <!-- Card 1 -->
+        <div class="menu-card fade-up" data-delay="0" id="menuCard1">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="menu-card-img">
+                <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="400" height="280" fill="#1a3010"/>
+                  <radialGradient id="cl1" cx="50%" cy="40%" r="60%">
+                    <stop offset="0%" stop-color="#2d5020" stop-opacity="0.8"/>
+                    <stop offset="100%" stop-color="#0a1508" stop-opacity="0"/>
+                  </radialGradient>
+                  <rect width="400" height="280" fill="url(#cl1)"/>
+                  <!-- Wooden table -->
+                  <rect x="0" y="190" width="400" height="90" fill="#3d2210"/>
+                  <rect x="0" y="188" width="400" height="5" fill="#4d2e18"/>
+                  <line x1="50" y1="190" x2="48" y2="280" stroke="#4a2e18" stroke-width="2" opacity="0.6"/>
+                  <line x1="120" y1="190" x2="118" y2="280" stroke="#3a2010" stroke-width="1.5" opacity="0.5"/>
+                  <line x1="200" y1="190" x2="198" y2="280" stroke="#4a2e18" stroke-width="2" opacity="0.6"/>
+                  <line x1="280" y1="190" x2="278" y2="280" stroke="#3a2010" stroke-width="1.5" opacity="0.5"/>
+                  <line x1="350" y1="190" x2="348" y2="280" stroke="#4a2e18" stroke-width="2" opacity="0.5"/>
+                  <!-- Compass on table -->
+                  <circle cx="120" cy="220" r="28" fill="#2c1a08" stroke="#8B6340" stroke-width="2"/>
+                  <circle cx="120" cy="220" r="22" fill="#1a0e04" stroke="#795548" stroke-width="1"/>
+                  <polygon points="120,200 123,215 120,212 117,215" fill="#c0392b"/>
+                  <polygon points="120,240 123,225 120,228 117,225" fill="#8B6340"/>
+                  <circle cx="120" cy="220" r="3" fill="#FFC107"/>
+                  <!-- Coffee cup main -->
+                  <ellipse cx="230" cy="200" rx="60" ry="9" fill="#5a3820"/>
+                  <ellipse cx="230" cy="198" rx="60" ry="9" fill="#6b4428"/>
+                  <path d="M175 140 Q175 192 183 197 Q230 207 277 197 Q285 192 285 140 Z" fill="#4a2c14"/>
+                  <path d="M178 140 Q178 190 186 195 Q230 204 274 195 Q282 190 282 140 Z" fill="#5a3820"/>
+                  <ellipse cx="230" cy="140" rx="52" ry="9" fill="#6b4428"/>
+                  <ellipse cx="230" cy="138" rx="52" ry="9" fill="#7a5030"/>
+                  <!-- Coffee surface with explorer map pattern -->
+                  <ellipse cx="230" cy="138" rx="44" ry="7" fill="#2c1608"/>
+                  <path d="M215 136 Q222 130 230 133 Q238 130 245 136" stroke="#8B6340" stroke-width="1.5" fill="none" opacity="0.6"/>
+                  <text x="230" y="141" text-anchor="middle" font-size="8" fill="#FFC107" opacity="0.5">☕</text>
+                  <!-- Steam -->
+                  <path d="M210 122 Q206 110 210 98 Q214 86 210 74" stroke="#d9cdb8" stroke-width="1.5" fill="none" opacity="0.35" stroke-linecap="round"/>
+                  <path d="M230 118 Q226 106 230 94 Q234 82 230 70" stroke="#d9cdb8" stroke-width="1.5" fill="none" opacity="0.3" stroke-linecap="round"/>
+                  <path d="M250 122 Q254 110 250 98 Q246 86 250 74" stroke="#d9cdb8" stroke-width="1.5" fill="none" opacity="0.35" stroke-linecap="round"/>
+                  <!-- Handle -->
+                  <path d="M282 155 Q305 155 305 175 Q305 195 282 195" stroke="#4a2c14" stroke-width="7" fill="none" stroke-linecap="round"/>
+                  <path d="M282 157 Q301 157 301 175 Q301 193 282 193" stroke="#5a3820" stroke-width="4" fill="none" stroke-linecap="round"/>
+                  <!-- Plants -->
+                  <ellipse cx="25" cy="170" rx="42" ry="55" fill="#1a4314" transform="rotate(-12,25,170)" opacity="0.9"/>
+                  <ellipse cx="375" cy="160" rx="38" ry="50" fill="#224d16" transform="rotate(10,375,160)" opacity="0.9"/>
+                  <radialGradient id="v1" cx="50%" cy="50%" r="65%">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="100%" stop-color="#050c07" stop-opacity="0.85"/>
+                  </radialGradient>
+                  <rect width="400" height="280" fill="url(#v1)"/>
+                </svg>
+                <div class="card-badge">🥇 人気No.1</div>
+              </div>
+              <div class="menu-card-body">
+                <p class="menu-card-tag">☕ Signature Coffee</p>
+                <h3 class="menu-card-name">探検家ブレンド</h3>
+                <p class="menu-card-name-en">Explorer's Blend</p>
+                <p class="menu-card-desc">深い森をイメージした、力強くも複雑な味わい。エチオピア・グアテマラをブレンドした自家焙煎豆を、コンパスを模したカップで提供。</p>
+                <div class="menu-card-footer">
+                  <div class="menu-card-price">¥850</div>
+                  <div class="menu-card-level">
+                    <span>難易度:</span>
+                    <span class="level-dots">
+                      <span class="dot active"></span>
+                      <span class="dot active"></span>
+                      <span class="dot active"></span>
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="menu-card fade-up" data-delay="120" id="menuCard2">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="menu-card-img">
+                <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="400" height="280" fill="#1e2a14"/>
+                  <radialGradient id="cl2" cx="40%" cy="30%" r="55%">
+                    <stop offset="0%" stop-color="#FFC107" stop-opacity="0.12"/>
+                    <stop offset="100%" stop-color="#0a1208" stop-opacity="0"/>
+                  </radialGradient>
+                  <rect width="400" height="280" fill="url(#cl2)"/>
+                  <rect x="0" y="195" width="400" height="85" fill="#2c1810"/>
+                  <rect x="0" y="193" width="400" height="5" fill="#3c2415"/>
+                  <!-- Plate -->
+                  <ellipse cx="210" cy="210" rx="95" ry="14" fill="#c8b08a"/>
+                  <ellipse cx="210" cy="207" rx="95" ry="14" fill="#ddc49a"/>
+                  <!-- Pie / Berry pie -->
+                  <ellipse cx="210" cy="170" rx="72" ry="14" fill="#8B3A2A"/>
+                  <path d="M138 128 Q138 168 148 173 Q210 185 272 173 Q282 168 282 128 Z" fill="#7a2e20"/>
+                  <path d="M140 128 Q140 166 150 171 Q210 182 270 171 Q280 166 280 128 Z" fill="#8B3A2A"/>
+                  <!-- Pie crust top -->
+                  <ellipse cx="210" cy="128" rx="70" ry="14" fill="#c4956a"/>
+                  <ellipse cx="210" cy="126" rx="70" ry="14" fill="#d4a578"/>
+                  <!-- Lattice pattern -->
+                  <path d="M170 115 L250 115 L252 128 L168 128Z" fill="#c4956a" opacity="0.5"/>
+                  <line x1="176" y1="112" x2="172" y2="128" stroke="#b8875c" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="190" y1="110" x2="186" y2="128" stroke="#b8875c" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="204" y1="109" x2="200" y2="128" stroke="#b8875c" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="218" y1="109" x2="214" y2="128" stroke="#b8875c" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="232" y1="110" x2="228" y2="128" stroke="#b8875c" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="246" y1="112" x2="242" y2="128" stroke="#b8875c" stroke-width="3" stroke-linecap="round"/>
+                  <!-- Berry filling showing -->
+                  <ellipse cx="210" cy="127" rx="62" ry="11" fill="#8B2252" opacity="0.7"/>
+                  <!-- Berries on top -->
+                  <circle cx="190" cy="122" r="7" fill="#c0392b"/>
+                  <circle cx="205" cy="118" r="8" fill="#8B2252"/>
+                  <circle cx="220" cy="119" r="7" fill="#a0304a"/>
+                  <circle cx="233" cy="122" r="6" fill="#c0392b"/>
+                  <circle cx="175" cy="125" r="6" fill="#8B2252"/>
+                  <!-- Leaves -->
+                  <ellipse cx="184" cy="116" rx="6" ry="3.5" fill="#3a8040" transform="rotate(-25,184,116)"/>
+                  <ellipse cx="228" cy="115" rx="6" ry="3.5" fill="#3a8040" transform="rotate(25,228,115)"/>
+                  <!-- Whipped cream -->
+                  <ellipse cx="210" cy="122" rx="30" ry="8" fill="#f5f0e8" opacity="0.8"/>
+                  <path d="M185 122 Q192 116 200 120 Q208 115 216 120 Q224 115 232 120 Q226 126 210 128 Q194 126 185 122Z" fill="#f5f0e8" opacity="0.9"/>
+                  <!-- Powder sugar -->
+                  <circle cx="170" cy="135" r="2" fill="#f5f0e8" opacity="0.5"/>
+                  <circle cx="250" cy="138" r="1.5" fill="#f5f0e8" opacity="0.4"/>
+                  <!-- Fork -->
+                  <rect x="285" y="183" width="3" height="25" rx="1.5" fill="#8a7a6a" opacity="0.5"/>
+                  <!-- Plants -->
+                  <ellipse cx="22" cy="175" rx="38" ry="52" fill="#1a4314" opacity="0.95"/>
+                  <ellipse cx="378" cy="168" rx="36" ry="48" fill="#224d16" opacity="0.9"/>
+                  <radialGradient id="v2" cx="50%" cy="50%" r="65%">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="100%" stop-color="#080f06" stop-opacity="0.85"/>
+                  </radialGradient>
+                  <rect width="400" height="280" fill="url(#v2)"/>
+                </svg>
+                <div class="card-badge" style="background:#8B2252;">🍓 本日のおすすめ</div>
+              </div>
+              <div class="menu-card-body">
+                <p class="menu-card-tag">🍰 Seasonal Dessert</p>
+                <h3 class="menu-card-name">秘密の森のベリーパイ</h3>
+                <p class="menu-card-name-en">Secret Forest Berry Pie</p>
+                <p class="menu-card-desc">森の奥で摘んだ（かのような）フレッシュベリーをたっぷり使ったパイ。サクサクのパイ生地と濃厚なベリーフィリングが絶品。地図を模した格子状のパイ皮が目印。</p>
+                <div class="menu-card-footer">
+                  <div class="menu-card-price">¥680</div>
+                  <div class="menu-card-level">
+                    <span>甘さ:</span>
+                    <span class="level-dots">
+                      <span class="dot active"></span>
+                      <span class="dot active"></span>
+                      <span class="dot active"></span>
+                      <span class="dot active"></span>
+                      <span class="dot"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="menu-card fade-up" data-delay="240" id="menuCard3">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="menu-card-img">
+                <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="400" height="280" fill="#162010"/>
+                  <radialGradient id="cl3" cx="60%" cy="35%" r="55%">
+                    <stop offset="0%" stop-color="#FF9800" stop-opacity="0.1"/>
+                    <stop offset="100%" stop-color="#0a1508" stop-opacity="0"/>
+                  </radialGradient>
+                  <rect width="400" height="280" fill="url(#cl3)"/>
+                  <!-- Table -->
+                  <rect x="0" y="195" width="400" height="85" fill="#2c1a0c"/>
+                  <rect x="0" y="193" width="400" height="5" fill="#3c2412"/>
+                  <!-- Plate -->
+                  <ellipse cx="200" cy="210" rx="110" ry="16" fill="#c8b48e"/>
+                  <ellipse cx="200" cy="207" rx="110" ry="16" fill="#ddc89a"/>
+                  <!-- Sandwich base bread -->
+                  <rect x="115" y="178" width="170" height="24" rx="6" fill="#c4956a"/>
+                  <rect x="117" y="180" width="166" height="20" rx="5" fill="#d4a578"/>
+                  <!-- Sesame seeds on bread -->
+                  <ellipse cx="140" cy="184" rx="2" ry="1.5" fill="#e8c088" opacity="0.8"/>
+                  <ellipse cx="160" cy="182" rx="2" ry="1.5" fill="#e8c088" opacity="0.8"/>
+                  <ellipse cx="180" cy="184" rx="2" ry="1.5" fill="#e8c088" opacity="0.8"/>
+                  <ellipse cx="200" cy="183" rx="2" ry="1.5" fill="#e8c088" opacity="0.8"/>
+                  <ellipse cx="220" cy="184" rx="2" ry="1.5" fill="#e8c088" opacity="0.8"/>
+                  <ellipse cx="240" cy="182" rx="2" ry="1.5" fill="#e8c088" opacity="0.8"/>
+                  <ellipse cx="260" cy="184" rx="2" ry="1.5" fill="#e8c088" opacity="0.8"/>
+                  <!-- Fillings layers -->
+                  <!-- Cheese -->
+                  <rect x="113" y="168" width="174" height="14" rx="3" fill="#f0c040"/>
+                  <!-- Lettuce -->
+                  <path d="M110 155 Q130 145 150 152 Q170 145 190 153 Q210 145 230 152 Q250 145 270 153 Q285 148 290 155 L290 170 Q270 162 250 168 Q230 160 210 166 Q190 160 170 166 Q150 160 130 166 Q115 162 110 170Z" fill="#5a9040"/>
+                  <!-- Tomato -->
+                  <rect x="118" y="143" width="164" height="16" rx="3" fill="#c0392b" opacity="0.9"/>
+                  <!-- Meat patty -->
+                  <rect x="112" y="125" width="176" height="22" rx="5" fill="#7a4020"/>
+                  <rect x="115" y="127" width="170" height="18" rx="4" fill="#8B4A28"/>
+                  <!-- Grill marks -->
+                  <line x1="135" y1="125" x2="130" y2="147" stroke="#6a3818" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+                  <line x1="158" y1="125" x2="153" y2="147" stroke="#6a3818" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+                  <line x1="181" y1="125" x2="176" y2="147" stroke="#6a3818" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+                  <line x1="204" y1="125" x2="199" y2="147" stroke="#6a3818" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+                  <line x1="227" y1="125" x2="222" y2="147" stroke="#6a3818" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+                  <line x1="250" y1="125" x2="245" y2="147" stroke="#6a3818" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+                  <!-- Top bun -->
+                  <ellipse cx="200" cy="118" rx="88" ry="28" fill="#c4956a"/>
+                  <ellipse cx="200" cy="114" rx="85" ry="24" fill="#d4a578"/>
+                  <!-- Bun highlight -->
+                  <ellipse cx="185" cy="106" rx="30" ry="10" fill="#e8c090" opacity="0.4"/>
+                  <!-- Toothpick with flag -->
+                  <line x1="200" y1="85" x2="200" y2="120" stroke="#8B6340" stroke-width="2.5"/>
+                  <polygon points="200,85 200,98 218,91" fill="#FF9800"/>
+                  <text x="209" y="93" font-size="6" fill="white" font-family="Arial Black">🗺️</text>
+                  <!-- Plants -->
+                  <ellipse cx="18" cy="170" rx="38" ry="52" fill="#1a4314" opacity="0.95"/>
+                  <ellipse cx="382" cy="162" rx="36" ry="48" fill="#224d16" opacity="0.9"/>
+                  <radialGradient id="v3" cx="50%" cy="50%" r="65%">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="100%" stop-color="#050c07" stop-opacity="0.85"/>
+                  </radialGradient>
+                  <rect width="400" height="280" fill="url(#v3)"/>
+                </svg>
+                <div class="card-badge" style="background:#795548;">🗺️ 新登場</div>
+              </div>
+              <div class="menu-card-body">
+                <p class="menu-card-tag">🥪 Special Sandwich</p>
+                <h3 class="menu-card-name">宝探しサンドイッチ</h3>
+                <p class="menu-card-name-en">Treasure Hunt Sandwich</p>
+                <p class="menu-card-desc">地図の旗が刺さった秘密のサンドイッチ。特製スモークビーフと新鮮野菜を重ねた、食べるたびに新しい発見がある一品。</p>
+                <div class="menu-card-footer">
+                  <div class="menu-card-price">¥1,200</div>
+                  <div class="menu-card-level">
+                    <span>ボリューム:</span>
+                    <span class="level-dots">
+                      <span class="dot active"></span>
+                      <span class="dot active"></span>
+                      <span class="dot active"></span>
+                      <span class="dot active"></span>
+                      <span class="dot active"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.menu-cards -->
+    </div>
+  </section>
+
+  <!-- ========== ACCESS ========== -->
+  <section class="access" id="access">
+    <!-- ロープ風区切り線 -->
+    <div class="rope-divider">
+      <svg viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,20 Q180,5 360,20 Q540,35 720,20 Q900,5 1080,20 Q1260,35 1440,20" stroke="#795548" stroke-width="3" fill="none"/>
+        <circle cx="180" cy="10" r="5" fill="#795548"/>
+        <circle cx="540" cy="32" r="5" fill="#795548"/>
+        <circle cx="900" cy="8" r="5" fill="#795548"/>
+        <circle cx="1260" cy="30" r="5" fill="#795548"/>
+      </svg>
+    </div>
+
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <div class="stamp-label">📍 Secret Location</div>
+        <h2 class="section-title">秘密基地への<br><em>行き方</em></h2>
+        <p class="section-subtitle">地図と勘を頼りに…</p>
+      </div>
+
+      <div class="access-grid">
+        <!-- Info board -->
+        <div class="access-board fade-up" data-delay="0">
+          <div class="board-header">
+            <span class="board-icon">📋</span>
+            <span class="board-title">MISSION BRIEFING</span>
+          </div>
+
+          <ul class="info-list">
+            <li class="info-item">
+              <span class="info-key">📌 BASE</span>
+              <span class="info-val">
+                <strong>〒412-0042</strong><br>
+                静岡県御殿場市印野 1234-5<br>
+                <em>富士山麓の秘密の森の中</em>
+              </span>
+            </li>
+            <li class="info-item">
+              <span class="info-key">⏰ OPEN</span>
+              <span class="info-val">
+                <strong>10:00 — 18:00</strong><br>
+                L.O. フード 17:30 / ドリンク 17:45<br>
+                <small>※ 悪天候時は基地が閉まることがあります</small>
+              </span>
+            </li>
+            <li class="info-item">
+              <span class="info-key">🚫 CLOSED</span>
+              <span class="info-val">
+                毎週月曜日・火曜日<br>
+                （祝日の場合は翌平日）
+              </span>
+            </li>
+            <li class="info-item">
+              <span class="info-key">📡 RADIO</span>
+              <span class="info-val"><strong>0550-00-0000</strong></span>
+            </li>
+            <li class="info-item">
+              <span class="info-key">🚗 ROUTE</span>
+              <span class="info-val">
+                御殿場駅より車で約20分<br>
+                駐車場：15台（無料）<br>
+                <em>※ 徒歩での探検も可能（健脚者向け）</em>
+              </span>
+            </li>
+          </ul>
+
+          <div class="access-warning">
+            <span>⚠️</span>
+            <span>森の中のため、ナビ誘導が正確でない場合があります。木々の間の手作り看板「🏕️ SECRET BASE →」を目印にお越しください。</span>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div class="access-map-col fade-up" data-delay="150">
+          <div class="access-map-frame">
+            <svg viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg">
+              <!-- Map background (aged paper) -->
+              <rect width="400" height="420" fill="#d4b896"/>
+              <rect width="400" height="420" fill="#c8a880" opacity="0.4"/>
+              <!-- Grid lines (old map style) -->
+              <g stroke="#b09060" stroke-width="0.5" opacity="0.4">
+                <line x1="0" y1="60" x2="400" y2="60"/>
+                <line x1="0" y1="120" x2="400" y2="120"/>
+                <line x1="0" y1="180" x2="400" y2="180"/>
+                <line x1="0" y1="240" x2="400" y2="240"/>
+                <line x1="0" y1="300" x2="400" y2="300"/>
+                <line x1="0" y1="360" x2="400" y2="360"/>
+                <line x1="80" y1="0" x2="80" y2="420"/>
+                <line x1="160" y1="0" x2="160" y2="420"/>
+                <line x1="240" y1="0" x2="240" y2="420"/>
+                <line x1="320" y1="0" x2="320" y2="420"/>
+              </g>
+              <!-- Forest areas -->
+              <circle cx="80" cy="80" r="50" fill="#5a7a3a" opacity="0.2"/>
+              <circle cx="320" cy="100" r="55" fill="#5a7a3a" opacity="0.2"/>
+              <circle cx="100" cy="330" r="60" fill="#5a7a3a" opacity="0.2"/>
+              <circle cx="340" cy="320" r="48" fill="#5a7a3a" opacity="0.2"/>
+              <!-- Tree dots -->
+              <g fill="#3d6020" opacity="0.35" font-size="14">
+                <text x="50" y="65">🌲</text><text x="80" y="50">🌲</text>
+                <text x="295" y="75">🌲</text><text x="325" y="60">🌲</text>
+                <text x="65" y="310">🌲</text><text x="95" y="295">🌲</text>
+                <text x="315" y="300">🌲</text><text x="345" y="315">🌲</text>
+              </g>
+              <!-- Roads -->
+              <line x1="0" y1="210" x2="400" y2="200" stroke="#a08060" stroke-width="7"/>
+              <line x1="0" y1="210" x2="400" y2="200" stroke="#b89070" stroke-width="4"/>
+              <line x1="200" y1="0" x2="205" y2="420" stroke="#a08060" stroke-width="6"/>
+              <line x1="200" y1="0" x2="205" y2="420" stroke="#b89070" stroke-width="3"/>
+              <!-- Road labels -->
+              <text x="60" y="195" font-family="'Caveat',cursive" font-size="10" fill="#795548" transform="rotate(-2,60,195)">県道 78 号線</text>
+              <text x="215" y="100" font-family="'Caveat',cursive" font-size="10" fill="#795548" transform="rotate(90,215,100)">林道</text>
+              <!-- River -->
+              <path d="M0,310 Q100,295 200,310 Q300,325 400,308" stroke="#4a90d9" stroke-width="5" fill="none" opacity="0.4" stroke-linecap="round"/>
+              <path d="M0,310 Q100,295 200,310 Q300,325 400,308" stroke="#5aA0e9" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+              <text x="280" y="340" font-family="'Caveat',cursive" font-size="10" fill="#4a90d9" opacity="0.7">印野川</text>
+              <!-- Secret Base marker -->
+              <g transform="translate(200,200)">
+                <circle r="28" fill="#FF9800" opacity="0.15"/>
+                <circle r="20" fill="#FF9800"/>
+                <text y="7" text-anchor="middle" font-size="18">🏕️</text>
+              </g>
+              <!-- Pulsing rings -->
+              <circle cx="200" cy="200" r="30" fill="none" stroke="#FF9800" stroke-width="2.5" opacity="0.6" class="ping"/>
+              <circle cx="200" cy="200" r="44" fill="none" stroke="#FF9800" stroke-width="1.5" opacity="0.4" class="ping" style="animation-delay:0.6s"/>
+              <circle cx="200" cy="200" r="58" fill="none" stroke="#FF9800" stroke-width="1" opacity="0.2" class="ping" style="animation-delay:1.2s"/>
+              <!-- Label bubble -->
+              <rect x="218" y="175" width="118" height="36" rx="6" fill="white" opacity="0.92"/>
+              <polygon points="218,192 208,196 218,200" fill="white" opacity="0.92"/>
+              <text x="277" y="191" text-anchor="middle" font-family="'Permanent Marker',cursive" font-size="11" fill="#1A4314">SECRET BASE</text>
+              <text x="277" y="204" text-anchor="middle" font-family="'Caveat',cursive" font-size="10" fill="#795548">CAFE in the Forest</text>
+              <!-- Parking -->
+              <g transform="translate(155,245)">
+                <circle r="12" fill="#795548" opacity="0.8"/>
+                <text y="5" text-anchor="middle" font-size="14" fill="white">P</text>
+              </g>
+              <!-- Station -->
+              <g transform="translate(40,390)">
+                <rect x="-18" y="-14" width="36" height="28" rx="3" fill="#4a3a8a" opacity="0.8"/>
+                <text y="5" text-anchor="middle" font-size="9" fill="white" font-family="Arial">御殿場駅</text>
+              </g>
+              <path d="M58,390 Q120,380 155,345" stroke="#4a3a8a" stroke-width="2" stroke-dasharray="5,4" fill="none" opacity="0.5"/>
+              <!-- Compass -->
+              <g transform="translate(355,375)">
+                <circle r="26" fill="#d4b896" stroke="#795548" stroke-width="2" opacity="0.9"/>
+                <polygon points="0,-18 3,-7 0,-10 -3,-7" fill="#c0392b"/>
+                <polygon points="0,18 3,7 0,10 -3,7" fill="#795548"/>
+                <polygon points="-18,0 -7,3 -10,0 -7,-3" fill="#795548"/>
+                <polygon points="18,0 7,3 10,0 7,-3" fill="#795548"/>
+                <circle r="3" fill="#795548"/>
+                <text y="-21" text-anchor="middle" font-size="8" fill="#795548" font-family="Arial" font-weight="bold">N</text>
+              </g>
+              <!-- Legend -->
+              <rect x="10" y="370" width="115" height="42" rx="4" fill="white" opacity="0.7"/>
+              <text x="18" y="384" font-family="'Caveat',cursive" font-size="9" fill="#795548">🏕️ Secret Base Cafe</text>
+              <text x="18" y="398" font-family="'Caveat',cursive" font-size="9" fill="#4a3a8a">P  駐車場</text>
+              <text x="65" y="398" font-family="'Caveat',cursive" font-size="9" fill="#4a3a8a">🚉 駅</text>
+              <!-- Border -->
+              <rect width="400" height="420" fill="none" stroke="#795548" stroke-width="3"/>
+              <!-- TOP SECRET stamp -->
+              <g transform="translate(310,50) rotate(20)">
+                <rect x="-40" y="-18" width="80" height="36" rx="4" fill="none" stroke="#c0392b" stroke-width="3" opacity="0.4"/>
+                <text x="0" y="-3" text-anchor="middle" font-size="10" fill="#c0392b" font-family="Arial Black" opacity="0.4">TOP</text>
+                <text x="0" y="11" text-anchor="middle" font-size="10" fill="#c0392b" font-family="Arial Black" opacity="0.4">SECRET</text>
+              </g>
+            </svg>
+          </div>
+          <p class="map-note">※ この地図は探検用です。正確な位置はGooglemapでご確認ください。</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-inner">
+      <!-- ロープ装飾 -->
+      <div class="footer-rope">
+        🔦
+        <span class="rope-line"></span>
+        🏕️
+        <span class="rope-line"></span>
+        🗺️
+        <span class="rope-line"></span>
+        ☕
+        <span class="rope-line"></span>
+        🧭
+      </div>
+
+      <div class="footer-logo">
+        <span>SECRET BASE</span>
+        <span class="footer-logo-sub">CAFE in the Forest</span>
+      </div>
+
+      <p class="footer-tagline">森の奥深くに隠された、あなただけの秘密基地。</p>
+
+      <ul class="footer-links">
+        <li><a href="#concept" class="bounce-hover">🗺️ Concept</a></li>
+        <li><a href="#menu" class="bounce-hover">☕ Menu</a></li>
+        <li><a href="#access" class="bounce-hover">📍 Access</a></li>
+      </ul>
+
+      <div class="footer-stamp">
+        <div class="stamp-circle">
+          <span>🔐</span>
+          <span class="stamp-text">CLASSIFIED</span>
+        </div>
+      </div>
+
+      <p class="footer-copy">&copy; 2025 SECRET BASE CAFE in the Forest. All rights reserved.</p>
+      <p class="footer-copy-small">このウェブサイトは架空のカフェのポートフォリオ用サンプルです。</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
